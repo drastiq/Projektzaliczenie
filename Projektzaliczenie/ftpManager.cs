@@ -8,11 +8,16 @@ namespace Projektzaliczenie
 {
     class ftpManager
     {
-        private String nazwaServer = "";
-        private String nazwaUzytkownika = "";
-        string haslo;
+        private string nazwaServer { get; set; }
+        private string nazwaUzytkownika { get; set; }
+        string haslo { get; set; }
        
-       
+      public void poloczenie(string nazwaServ, string nazwaUzytkownika,string haslo)
+        {
+           
+
+
+        }
 
 
     }
