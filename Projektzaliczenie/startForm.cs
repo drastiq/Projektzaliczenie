@@ -15,7 +15,7 @@ namespace Projektzaliczenie
         public LogowanieMain()
         {
             InitializeComponent();
-            this.WindowState = FormWindowState.Minimized;
+         
         }
 
         private Icon ico;
@@ -84,15 +84,7 @@ namespace Projektzaliczenie
         {
 
 
-
-        private void OnClick()
-        {
-
-           
-
-
-
-        }
+ 
        }
     }
 }

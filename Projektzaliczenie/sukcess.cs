@@ -10,22 +10,21 @@ using System.Windows.Forms;
 
 namespace Projektzaliczenie
 {
-    public partial class mainForm : Form
+    public partial class sukcess : Form
     {
-        public mainForm()
+        public sukcess()
         {
-           
             InitializeComponent();
         }
 
-        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+
         }
     }
 }
