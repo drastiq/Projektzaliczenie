@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Projektzaliczenie
 {
@@ -67,7 +68,7 @@ namespace Projektzaliczenie
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+           
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -77,14 +78,24 @@ namespace Projektzaliczenie
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-
+            ftpManager.nazwaServer = this.Text;
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-
+            
 
  
        }
+
+        private void user_TextChanged(object sender, EventArgs e)
+        {
+            ftpManager.nazwaUzytkownika = this.Text;
+        }
+
+        private void password_TextChanged(object sender, EventArgs e)
+        {
+            ftpManager.haslo = this.Text;
+        }
     }
 }

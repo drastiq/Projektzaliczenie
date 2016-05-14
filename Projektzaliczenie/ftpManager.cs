@@ -11,9 +11,9 @@ namespace Projektzaliczenie
 {
     public class ftpManager
     {
-        private static string nazwaServer;
-        private static string nazwaUzytkownika;
-        private static string haslo;
+        public static string nazwaServer;
+        public static string nazwaUzytkownika;
+        public static string haslo;
        
 
         private FtpWebRequest ftpRequest=null;
@@ -27,6 +27,27 @@ namespace Projektzaliczenie
             nazwaUzytkownika = _nazwaUzytkownika;
             haslo = _haslo;
         }
+        public void fileRename(string oldName,string newName)
+        {
+            try
+            {
+
+                ftpRequest = (FtpWebRequest)FtpWebRequest.Create(nazwaServer + "/" + oldName);
+                ftpRequest.Credentials = new NetworkCredential(nazwaUzytkownika, haslo);
+                ftpRequest.UseBinary = true;
+                ftpRequest.UsePassive = true;
+                ftpRequest.KeepAlive = true;
+                ftpRequest.Method = WebRequestMethods.Ftp.Rename;
+                ftpRequest.RenameTo = newName;
+
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
         public void downloadFile(string servFile, string localFile) {
             try
             {
@@ -52,7 +73,7 @@ namespace Projektzaliczenie
                 }
                 catch (Exception e)
                 {
-                    
+                    throw e;      
                 }
                 fs.Close();
                 ftpStrteam.Close();
@@ -66,7 +87,7 @@ namespace Projektzaliczenie
             }
             catch (Exception e)
             {
-
+                throw e;
             }
         }
 
