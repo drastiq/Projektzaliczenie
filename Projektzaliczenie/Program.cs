@@ -17,6 +17,7 @@ namespace Projektzaliczenie
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LogowanieMain());
+            
         }
     }
 }

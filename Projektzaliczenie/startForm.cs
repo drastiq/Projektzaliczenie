@@ -18,6 +18,9 @@ namespace Projektzaliczenie
             InitializeComponent();
          
         }
+        private static string pass;
+        private static string serv;
+        private static string nazwuzytkownika;
 
         private Icon ico;
         private bool allowClose;
@@ -78,24 +81,26 @@ namespace Projektzaliczenie
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            ftpManager.nazwaServer = this.Text;
+            serv = this.Text;
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            
 
- 
-       }
+            ftpManager ftp = new ftpManager(serv, nazwuzytkownika, pass);
+            mainForm main = new mainForm();
+            main.Show();
+            
+        }
 
         private void user_TextChanged(object sender, EventArgs e)
         {
-            ftpManager.nazwaUzytkownika = this.Text;
+            nazwuzytkownika = this.Text;
         }
 
         private void password_TextChanged(object sender, EventArgs e)
         {
-            ftpManager.haslo = this.Text;
+            pass= this.Text;
         }
     }
 }
