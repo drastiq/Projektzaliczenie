@@ -20,7 +20,7 @@ namespace Projektzaliczenie
 
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
-
+            
         }
 
         private void button1_Click(object sender, EventArgs e)

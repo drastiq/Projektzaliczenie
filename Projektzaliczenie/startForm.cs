@@ -13,6 +13,12 @@ namespace Projektzaliczenie
 {
     public partial class LogowanieMain : Form
     {
+        
+
+
+
+        ftpManager ftp;
+
         public LogowanieMain()
         {
             InitializeComponent();
@@ -81,26 +87,29 @@ namespace Projektzaliczenie
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            serv = this.Text;
+            
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+           ftp = new ftpManager(serv_ip.Text, user.Text, password.Text);
+            if (ftp.isConnected()){
 
-            ftpManager ftp = new ftpManager(serv, nazwuzytkownika, pass);
-            mainForm main = new mainForm();
-            main.Show();
+                MessageBox.Show("Polaczno");
+            }
+            else
+            {
+                MessageBox.Show("Blad polaczenia");
+            }
             
         }
 
         private void user_TextChanged(object sender, EventArgs e)
         {
-            nazwuzytkownika = this.Text;
         }
 
         private void password_TextChanged(object sender, EventArgs e)
         {
-            pass= this.Text;
         }
     }
 }

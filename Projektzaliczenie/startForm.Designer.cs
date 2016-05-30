@@ -97,6 +97,7 @@
             this.user.Name = "user";
             this.user.Size = new System.Drawing.Size(100, 20);
             this.user.TabIndex = 2;
+            this.user.Text = "projektpob";
             this.user.TextChanged += new System.EventHandler(this.user_TextChanged);
             // 
             // button1
@@ -134,6 +135,7 @@
             this.serv_ip.Name = "serv_ip";
             this.serv_ip.Size = new System.Drawing.Size(100, 20);
             this.serv_ip.TabIndex = 1;
+            this.serv_ip.Text = "ftp://projektpob.square7.ch/";
             this.serv_ip.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // label3

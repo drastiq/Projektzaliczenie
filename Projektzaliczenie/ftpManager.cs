@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Threading;
 using System.IO;
-
+using System.Windows.Forms;
 namespace Projektzaliczenie
 {
     public class ftpManager
     {
-        public static string nazwaServer;
-        public static string nazwaUzytkownika;
-        public static string haslo;
-       
+        public static string nazwaServer { get; set; }
+        public static string nazwaUzytkownika { get; set; }
+        public static string haslo { get; set; }
 
-        private FtpWebRequest ftpRequest=null;
-        private FtpWebResponse ftpResponse=null;
-        private Stream ftpStrteam=null;
+
+        private FtpWebRequest ftpRequest = null;
+        private FtpWebResponse ftpResponse = null;
+        private Stream ftpStrteam = null;
         private int buffer = 2048;
 
         public ftpManager(string _nazwaServ, string _nazwaUzytkownika, string _haslo)
@@ -27,7 +27,28 @@ namespace Projektzaliczenie
             nazwaUzytkownika = _nazwaUzytkownika;
             haslo = _haslo;
         }
-        public void fileRename(string oldName,string newName)
+
+        public bool isConnected()
+        {
+            try
+            {
+                ftpRequest = (FtpWebRequest)WebRequest.Create(nazwaServer + "/");
+                //ftpRequest.UseDefaultCredentials = true;
+                ftpRequest.Method = WebRequestMethods.Ftp.ListDirectory;
+                ftpRequest.Credentials = new NetworkCredential(nazwaUzytkownika, haslo);
+                ftpRequest.GetResponse();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace);
+
+                return false;
+            }
+            return true;
+        }
+
+        public void fileRename(string oldName, string newName)
         {
             try
             {
@@ -48,15 +69,16 @@ namespace Projektzaliczenie
             }
         }
 
-        public void downloadFile(string servFile, string localFile) {
+        public void downloadFile(string servFile, string localFile)
+        {
             try
             {
                 ftpRequest = (FtpWebRequest)FtpWebRequest.Create(nazwaServer + "/" + servFile);
                 //ftpRequest.UseDefaultCredentials = true;
                 ftpRequest.Credentials = new NetworkCredential(nazwaUzytkownika, haslo);
                 ftpRequest.UseBinary = true;
-                ftpRequest.UsePassive=true;
-                ftpRequest.KeepAlive = true;  
+                ftpRequest.UsePassive = true;
+                ftpRequest.KeepAlive = true;
                 ftpRequest.Method = WebRequestMethods.Ftp.DownloadFile;
                 ftpResponse = (FtpWebResponse)ftpRequest.GetResponse();
                 ftpStrteam = ftpResponse.GetResponseStream();
@@ -73,7 +95,7 @@ namespace Projektzaliczenie
                 }
                 catch (Exception e)
                 {
-                    throw e;      
+                    throw e;
                 }
                 fs.Close();
                 ftpStrteam.Close();
@@ -91,7 +113,7 @@ namespace Projektzaliczenie
             }
         }
 
-        public void uploadFile(string localFile,string servFile)
+        public void uploadFile(string localFile, string servFile)
         {
             try
             {
@@ -103,7 +125,7 @@ namespace Projektzaliczenie
                 ftpRequest.Method = WebRequestMethods.Ftp.UploadFile;
                 FileStream localFileStream = new FileStream(localFile, FileMode.Open);
                 byte[] byteBuffer = new byte[localFileStream.Length];
-                int byteSend = localFileStream.Read(byteBuffer, 0, Convert.ToInt32( localFileStream.Length));
+                int byteSend = localFileStream.Read(byteBuffer, 0, Convert.ToInt32(localFileStream.Length));
 
                 try
                 {
@@ -145,9 +167,9 @@ namespace Projektzaliczenie
             FtpWebResponse respSize = (FtpWebResponse)sizeRequest.GetResponse();
             size = respSize.ContentLength;
             return size;
-        } 
-        
-          
+        }
+
+
 
 
 
